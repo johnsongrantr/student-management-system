@@ -2,3 +2,4 @@
 "" 
 "Welcome to Git." 
 "This is my first Git repository." 
+"Git tracks every change." 
