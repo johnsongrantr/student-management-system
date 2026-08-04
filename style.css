@@ -1,1 +1,159 @@
+﻿:root {
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --border: #d1d5db;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-app {
+  width: 100%;
+  max-width: 760px;
+  padding: 24px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  letter-spacing: -0.03em;
+}
+
+header p {
+  margin: 8px auto 0;
+  max-width: 640px;
+  color: var(--muted);
+}
+
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  padding: 28px;
+}
+
+.hidden {
+  display: none;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.question-header span {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+h2 {
+  margin: 0 0 22px;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.choices {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.choice-btn {
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.choice-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.choice-btn.selected {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.loader {
+  color: var(--muted);
+  text-align: center;
+  font-size: 1rem;
+  padding: 48px 0;
+}
+
+.result-area {
+  text-align: center;
+}
+
+.result-area h2 {
+  margin-bottom: 12px;
+}
+
+.result-area p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}

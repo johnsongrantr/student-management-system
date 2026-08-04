@@ -1,1 +1,32 @@
-
+﻿[
+  {
+    "question": "What is the capital of France?",
+    "choices": ["Paris", "Madrid", "Rome", "Berlin"],
+    "answer": "Paris"
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "choices": ["Earth", "Mars", "Venus", "Jupiter"],
+    "answer": "Mars"
+  },
+  {
+    "question": "What is the largest ocean on Earth?",
+    "choices": ["Atlantic", "Indian", "Arctic", "Pacific"],
+    "answer": "Pacific"
+  },
+  {
+    "question": "Which language is used for styling web pages?",
+    "choices": ["HTML", "Python", "CSS", "Java"],
+    "answer": "CSS"
+  },
+  {
+    "question": "What does HTML stand for?",
+    "choices": [
+      "Hyper Trainer Marking Language",
+      "Hyper Text Markup Language",
+      "High Text Markup Language",
+      "Hyper Text Machine Language"
+    ],
+    "answer": "Hyper Text Markup Language"
+  }
+]
