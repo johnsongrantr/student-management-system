@@ -11,7 +11,8 @@ Setup
 3. Enable GitHub Pages on your repo (Settings fi Pages) so the site is live from day one.  
 4. Confirm the starter files exist: index.html, questions.json, style.css.  
 Participant Checklist  
-Phase 1 — Building Features  
+  
+### Phase 1 — Building Features  
 - [  ]  Create a feature branch for one enhancement (score counter, timer, dark mode, etc.)  
 - [  ]  Use git add -p at least once to stage hunks selectively  
 - [  ]  Review your own diff with git diff / git diff --staged before committing  
@@ -20,13 +21,13 @@ Phase 1 — Building Features
 - [  ]  Merge the PR, then update local main and delete the merged branch (local + remote)  
 - [  ]  Set up at least 3 personal Git aliases  
   
-Phase 2 — Deliberate Conflicts  
+### Phase 2 — Deliberate Conflicts  
 - [  ]  Pair up and edit the same line of questions.json on two branches  
 - [  ]  Merge both branches and resolve the resulting conflict by hand  
 - [  ]  Resolve at least one conflict using a configured merge tool  
 - [  ]  Simulate and resolve a remote conflict (both partners push near-simultaneously)  
   
-Phase 3 — Bug Hunt  
+### Phase 3 — Bug Hunt  
 - [  ]  Receive (or plant, if you're the "saboteur") a bug hidden several commits back  
 - [  ]  Use git bisect start / good / bad to isolate the exact commit  
 - [  ]  Optional: automate the search with git bisect run  
