@@ -1,1 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trivia Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="quiz-app">
+    <header>
+      <h1>Trivia Quiz</h1>
+      <p>Answer the questions and see your score.</p>
+    </header>
 
+    <section class="quiz-card" id="quiz-card">
+      <div class="loader" id="loader">Loading questions...</div>
+
+      <div class="question-area hidden" id="question-area">
+        <div class="question-header">
+          <span id="question-number">Question 1</span>
+          <span id="score-display">Score: 0</span>
+        </div>
+
+        <h2 id="question-text"></h2>
+
+        <div class="choices" id="choices"></div>
+
+        <div class="actions">
+          <button id="next-button" class="btn btn-primary" disabled>Next</button>
+          <button id="restart-button" class="btn btn-secondary hidden">Restart</button>
+        </div>
+      </div>
+
+      <div class="result-area hidden" id="result-area">
+        <h2>Quiz Complete!</h2>
+        <p id="result-text"></p>
+        <button id="restart-button-2" class="btn btn-primary">Try Again</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questionArea = document.getElementById("question-area");
+    const loader = document.getElementById("loader");
+    const questionText = document.getElementById("question-text");
+    const questionNumber = document.getElementById("question-number");
+    const scoreDisplay = document.getElementById("score-display");
+    const choicesContainer = document.getElementById("choices");
+    const nextButton = document.getElementById("next-button");
+    const restartButton = document.getElementById("restart-button");
+    const restartButton2 = document.getElementById("restart-button-2");
+    const resultArea = document.getElementById("result-area");
+    const resultText = document.getElementById("result-text");
+
+    let questions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let selectedAnswer = null;
+
+    async function loadQuestions() {
+      try {
+        const response = await fetch("questions.json");
+        questions = await response.json();
+        startQuiz();
+      } catch (error) {
+        loader.textContent = "Failed to load questions.";
+        console.error(error);
+      }
+    }
+
+    function startQuiz() {
+      loader.classList.add("hidden");
+      questionArea.classList.remove("hidden");
+      resultArea.classList.add("hidden");
+      currentIndex = 0;
+      score = 0;
+      selectedAnswer = null;
+      scoreDisplay.textContent = `Score: ${score}`;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const current = questions[currentIndex];
+      questionNumber.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+      questionText.textContent = current.question;
+      choicesContainer.innerHTML = "";
+      nextButton.disabled = true;
+      selectedAnswer = null;
+
+      current.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.className = "choice-btn";
+        button.textContent = choice;
+        button.type = "button";
+        button.addEventListener("click", () => selectAnswer(choice, button));
+        choicesContainer.appendChild(button);
+      });
+    }
+
+    function selectAnswer(choice, button) {
+      selectedAnswer = choice;
+      nextButton.disabled = false;
+      document.querySelectorAll(".choice-btn").forEach(btn => {
+        btn.classList.remove("selected");
+      });
+      button.classList.add("selected");
+    }
+
+    function showResults() {
+      questionArea.classList.add("hidden");
+      resultArea.classList.remove("hidden");
+      resultText.textContent = `You scored ${score} out of ${questions.length}.`;
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (!selectedAnswer) return;
+
+      const current = questions[currentIndex];
+      if (selectedAnswer === current.answer) {
+        score += 1;
+      }
+
+      currentIndex += 1;
+      if (currentIndex >= questions.length) {
+        showResults();
+      } else {
+        scoreDisplay.textContent = `Score: ${score}`;
+        showQuestion();
+      }
+    });
+
+    function restartQuiz() {
+      resultArea.classList.add("hidden");
+      questionArea.classList.remove("hidden");
+      currentIndex = 0;
+      score = 0;
+      scoreDisplay.textContent = `Score: ${score}`;
+      showQuestion();
+    }
+
+    restartButton.addEventListener("click", restartQuiz);
+    restartButton2.addEventListener("click", restartQuiz);
+
+    loadQuestions();
+  </script>
+</body>
+</html>
